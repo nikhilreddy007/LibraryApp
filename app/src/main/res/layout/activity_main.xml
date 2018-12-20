@@ -7,7 +7,7 @@
     android:gravity="center"
     android:paddingLeft="32dp"
     android:paddingRight="32dp"
-    tools:context="com.example.nikhilreddy.library.MainActivity">
+    tools:context="com.example.nikhilreddy.libraryapp.MainActivity">
 
     <ImageView
         android:layout_width="128dp"

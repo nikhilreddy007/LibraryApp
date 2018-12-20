@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    tools:context="com.example.nikhilreddy.library.MainActivity">
+
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="120dp"
+        android:src="@drawable/vnrvjietlogo"
+        android:layout_margin="48dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:inputType="textCapCharacters"
+        android:hint="College Id" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:inputType="textPassword"
+        android:hint="Password" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="LOGIN"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:background="#f26a58" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="5dp"
+        android:layout_marginTop="5dp"
+        android:textSize="13sp"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:text="Forgot password?"
+        android:background="#00000000"
+        />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?  "
+            android:textSize="16sp"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/.signupbutton"
+            android:text="@string/signup"
+            android:textSize="16sp"
+            android:minWidth="50dp"
+            android:textAllCaps="false"
+            android:background="#00000000" />
+    </LinearLayout>
+
+</LinearLayout>

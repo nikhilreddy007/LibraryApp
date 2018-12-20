@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingLeft="32dp"
+    android:paddingRight="32dp"
+    tools:context="com.example.nikhilreddy.library.signupActivity">
+
+    <ImageView
+        android:layout_width="128dp"
+        android:layout_height="120dp"
+        android:src="@drawable/vnrvjietlogo"
+        android:layout_margin="48dp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:textSize="20sp"
+        android:singleLine="true"
+        android:inputType="textCapCharacters"
+        android:hint="College Id" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:inputType="textEmailAddress"
+        android:hint="Email Id" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:inputType="textPassword"
+        android:hint="Create new password" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:inputType="textPassword"
+        android:hint="Confirm password" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="SIGNUP"
+        android:textSize="20sp"
+        android:textColor="#FFFFFF"
+        android:background="#f26a58" />
+
+</LinearLayout>

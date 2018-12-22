@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +23,17 @@
         android:textSize="20sp"
         android:singleLine="true"
         android:inputType="textCapCharacters"
-        android:hint="College Id" />
+        android:hint="College Id"
+        android:id="@+id/collegeidInput"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="left"
+        android:id="@+id/collegeidwrong"
+        android:textSize="10dp"
+        android:textColor="#FF0000"
+        android:visibility="gone"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -34,7 +43,18 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:inputType="textEmailAddress"
-        android:hint="Email Id" />
+        android:hint="Username"
+        android:id="@+id/usernameInput"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="left"
+        android:id="@+id/usernamewrong"
+        android:text="Enter a valid username"
+        android:textSize="10dp"
+        android:textColor="#FF0000"
+        android:visibility="gone"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -44,7 +64,18 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:inputType="textPassword"
-        android:hint="Create new password" />
+        android:hint="Create new password"
+        android:id="@+id/createnewpasswordInput"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="left"
+        android:id="@+id/newpasswordwrong"
+        android:text="Password should not contain special characters"
+        android:textSize="10dp"
+        android:textColor="#FF0000"
+        android:visibility="gone"/>
 
     <EditText
         android:layout_width="match_parent"
@@ -54,7 +85,18 @@
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:inputType="textPassword"
-        android:hint="Confirm password" />
+        android:hint="Confirm password"
+        android:id="@+id/confirmpasswordInput"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="left"
+        android:id="@+id/confirmpasswordwrong"
+        android:text="Passwords do not match"
+        android:textSize="10dp"
+        android:textColor="#FF0000"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="match_parent"
@@ -63,6 +105,7 @@
         android:text="SIGNUP"
         android:textSize="20sp"
         android:textColor="#FFFFFF"
-        android:background="#f26a58" />
+        android:background="#f26a58"
+        android:id="@+id/.mainsignupbutton"/>
 
 </LinearLayout>

@@ -5,27 +5,26 @@ package com.example.nikhilreddy.libraryapp;
  */
 
 public class User {
-    public String collegeId;
-    public String username;
-    public String password;
+
+    private String collegeId, emailId, username, password;
 
     // Default constructor required for calls to
     // DataSnapshot.getValue(User.class)
     public User() {
     }
 
-    public User(String collegeId, String username, String password) {
+    public User(String collegeId, String emailId, String username) {
         this.collegeId = collegeId;
+        this.emailId = emailId;
         this.username = username;
-        this.password = password;
     }
 
     public String getCollegeId() {
         return collegeId;
     }
 
-    public String getPassword() {
-        return password;
+    public String getEmailId() {
+        return emailId;
     }
 
     public String getUsername() {

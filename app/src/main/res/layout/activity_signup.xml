@@ -63,6 +63,27 @@
         android:singleLine="true"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
+        android:inputType="textEmailAddress"
+        android:hint="Username"
+        android:id="@+id/emailidInput"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_gravity="left"
+        android:id="@+id/emailidwrong"
+        android:text="Enter a valid username"
+        android:textSize="10dp"
+        android:textColor="#FF0000"
+        android:visibility="gone"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
         android:inputType="textPassword"
         android:hint="Create new password"
         android:id="@+id/createnewpasswordInput"/>

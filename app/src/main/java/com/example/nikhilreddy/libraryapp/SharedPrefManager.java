@@ -15,7 +15,6 @@ public class SharedPrefManager {
     private static final String SHARED_PREF_NAME = "sharedpref";
     private static final String KEY_USERNAME = "keyusername";
     private static final String KEY_EMAIL = "keyemail";
-    private static final String KEY_GENDER = "keygender";
     private static final String KEY_ID = "keyid";
 
     private static SharedPrefManager mInstance;
@@ -46,7 +45,7 @@ public class SharedPrefManager {
     //this method will checker whether user is already logged in or not
     public boolean isLoggedIn() {
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
-        return sharedPreferences.getString(KEY_USERNAME, null) != null;
+        return sharedPreferences.getString(KEY_ID, null) != null;
     }
 
     //this method will give the logged in user

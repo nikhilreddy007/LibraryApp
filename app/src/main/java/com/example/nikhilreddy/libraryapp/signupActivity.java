@@ -11,26 +11,21 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
-//import com.google.firebase.database.DataSnapshot;
-//import com.google.firebase.database.DatabaseError;
-//import com.google.firebase.database.DatabaseReference;
-//import com.google.firebase.database.FirebaseDatabase;
-//import com.google.firebase.database.ValueEventListener;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpResponse;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.EventListener;
 
 public class signupActivity extends AppCompatActivity {
 
@@ -79,31 +74,8 @@ public class signupActivity extends AppCompatActivity {
                 String newpassword = createnewpasswordInput.getText().toString();
                 String confirmpassword = confirmpasswordInput.getText().toString();
 
-//                if(collegeId not exists) {
-//                    collegeidwrong.setText("ID does not exist");
-//                    collegeidwrong.setVisibility(View.VISIBLE);
-//                    everythingOk = false;
-//                } else if(collegeId already there) {
-//                    collegeidwrong.setText("ID does not exist");
-//                    collegeidwrong.setVisibility(View.VISIBLE);
-//                    everythingOk = false;
-//                } else if(username is not valid) {
-//                    usernamewrong.setVisibility(View.VISIBLE);
-//                    everythingOk = false;
-//                } else if(newpassword is not valid) {
-//                    newpasswordwrong.setVisibility(View.VISIBLE);
-//                    everythingOk = false;
-//                } else if(confirmpassword does not match) {
-//                    confirmpasswordwrong.setVisibility(View.VISIBLE);
-//                    everythingOk = false;
-//                }
-
                 if(everythingOk) {
-                    //String newUserId = userDatabase.push().getKey();
-                    //User newUser = new User(collegeId, username, newpassword);
-                    //userDatabase.child(newUserId).setValue(newUser);
                     registerUser();
-                    finish();
                 }
             }
         });
@@ -113,24 +85,17 @@ public class signupActivity extends AppCompatActivity {
         final String collegeid = collegeidInput.getText().toString().trim();
         final String email = emailidInput.getText().toString().trim();
         final String username = usernameInput.getText().toString().trim();
-        final String password = createnewpasswordInput.getText().toString().trim();
+        final String newpassword = createnewpasswordInput.getText().toString().trim();
+        final String confirmpassword = confirmpasswordInput.getText().toString().trim();
 
-        //first we will do the validations
-
-        if (TextUtils.isEmpty(username)) {
-            collegeidInput.setError("Please enter username");
+        if (TextUtils.isEmpty(collegeid)) {
+            collegeidInput.setError("Enter college id");
             collegeidInput.requestFocus();
             return;
         }
 
-        if (TextUtils.isEmpty(username)) {
-            usernameInput.setError("Please enter username");
-            usernameInput.requestFocus();
-            return;
-        }
-
         if (TextUtils.isEmpty(email)) {
-            emailidInput.setError("Please enter your email");
+            emailidInput.setError("Enter your email");
             emailidInput.requestFocus();
             return;
         }
@@ -141,42 +106,44 @@ public class signupActivity extends AppCompatActivity {
             return;
         }
 
-        if (TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(username)) {
+            usernameInput.setError("Enter a username");
+            usernameInput.requestFocus();
+            return;
+        }
+
+        if (TextUtils.isEmpty(newpassword)) {
             createnewpasswordInput.setError("Enter a password");
             createnewpasswordInput.requestFocus();
             return;
         }
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER,
-                new Response.Listener<String>() {
+        if (TextUtils.isEmpty(confirmpassword)) {
+            confirmpasswordInput.setError("Enter password again");
+            confirmpasswordInput.requestFocus();
+            return;
+        }
+
+        if(!newpassword.equals(confirmpassword)) {
+            confirmpasswordInput.setError("Passwords do not match");
+            confirmpasswordInput.requestFocus();
+            return;
+        }
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URLs.URL_REGISTER, new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
-                            //converting response to json object
-                            JSONObject obj = new JSONObject(response);
-
+                            JSONObject responseObject = new JSONObject(response);
+                            JSONObject status = responseObject.getJSONObject("status");
                             //if no error in response
-                            if (!obj.getBoolean("error")) {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
-
-                                //getting the user from the response
-                                JSONObject userJson = obj.getJSONObject("user");
-
-                                //creating a new user object
-                                User user = new User(
-                                        userJson.getString("collegeid"),
-                                        userJson.getString("email"),
-                                        userJson.getString("username")
-                                );
-
-                                //storing the user in shared preferences
-                                SharedPrefManager.getInstance(getApplicationContext()).userLogin(user);
-
-                                //starting the profile activity
+                            if (status.getInt("success") == 1) {
+                                Log.d("msg", "success");
+                                Toast.makeText(getApplicationContext(), status.getString("message"), Toast.LENGTH_LONG).show();
                                 finish();
-                                startActivity(new Intent(getApplicationContext(), homePageActivity.class));
                             } else {
-                                Toast.makeText(getApplicationContext(), obj.getString("message"), Toast.LENGTH_SHORT).show();
+                                Log.d("msg", "not success");
+                                Toast.makeText(getApplicationContext(), status.getString("message"), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -186,7 +153,8 @@ public class signupActivity extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.d("msg", "error");
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
@@ -195,43 +163,11 @@ public class signupActivity extends AppCompatActivity {
                 params.put("collegeid", collegeid);
                 params.put("emailid", email);
                 params.put("username", username);
-                params.put("password", password);
+                params.put("password", newpassword);
                 return params;
             }
         };
 
         VolleySingleton.getInstance(this).addToRequestQueue(stringRequest);
-
     }
-    
-//    public void InsertSV() {
-//        StringRequest stringRequest = new StringRequest(Request.Method.POST, "http://192.168.0.53/test/registeruser.php", new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                //Toast.makeText(signupActivity.this, response.toString(), Toast.LENGTH_LONG).show();
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                //Toast.makeText(signupActivity.this, error.toString(), Toast.LENGTH_LONG).show();
-//            }
-//        }){
-//            @Override
-//            protected Map<String ,String> getParams() throws AuthFailureError {
-//                Map<String, String> params = new HashMap<String, String>();
-//                String collegeid = collegeidInput.getText().toString();
-//                String username  = usernameInput.getText().toString();
-//                String email = "email@gmail.com";
-//                String password = createnewpasswordInput.getText().toString();
-//                params.put("collegeid", collegeid);
-//                params.put("emailid", email);
-//                params.put("username", username);
-//                params.put("password", password);
-//                return params;
-//            }
-//        };
-
-//        RequestQueue requestQueue = Volley.newRequestQueue(this);
-//        requestQueue.add(stringRequest);
-//    }
 }

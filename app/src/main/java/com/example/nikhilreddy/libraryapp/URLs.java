@@ -5,7 +5,7 @@ package com.example.nikhilreddy.libraryapp;
  */
 
 public class URLs {
-    private static final String ROOT_URL = "http://localhost/test/";
+    private static final String ROOT_URL = "http://192.168.43.70/test/";
 
     public static final String URL_REGISTER = ROOT_URL + "registerUser.php";
     public static final String URL_LOGIN= ROOT_URL + "login.php";

@@ -16,6 +16,7 @@
         android:layout_margin="48dp"/>
 
     <EditText
+        android:id="@+id/LoginCollegeidInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -25,6 +26,7 @@
         android:hint="College Id" />
 
     <EditText
+        android:id="@+id/LoginPasswordInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"

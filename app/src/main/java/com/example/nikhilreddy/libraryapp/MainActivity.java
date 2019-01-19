@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText passwordInput;
     Button loginButton;
     Button signupButton;
+    Button forgotButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
         signupButton  = (Button) findViewById(R.id._signupbutton);
         collegeidInput = (EditText) findViewById(R.id.LoginCollegeidInput);
         passwordInput = (EditText) findViewById(R.id.LoginPasswordInput);
+        forgotButton = (Button) findViewById(R.id.forgotbutton);
+
 
         final Intent signup_intent = new Intent(this, signupActivity.class);
 
@@ -55,12 +58,23 @@ public class MainActivity extends AppCompatActivity {
                 userLogin();
             }
         });
+        forgotButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openDialog();
+            }
+        });
 
         signupButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 startActivity(signup_intent);
             }
         });
+    }
+
+    public void openDialog() {
+        DialogBox dialogBox = new DialogBox();
+        dialogBox.show(getSupportFragmentManager(), "dialogBox");
     }
 
     private void userLogin() {
